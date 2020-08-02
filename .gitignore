@@ -108,6 +108,7 @@ fabric.properties
 .idea/codestream.xml
 
 ### Python ###
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -162,6 +163,7 @@ coverage.xml
 .pytest_cache/
 pytestdebug.log
 
+
 # Translations
 *.mo
 *.pot
@@ -182,6 +184,7 @@ instance/
 # Sphinx documentation
 docs/_build/
 doc/_build/
+
 
 # PyBuilder
 target/
@@ -244,3 +247,4 @@ dmypy.json
 .pytype/
 
 # End of https://www.toptal.com/developers/gitignore/api/pycharm,python
+
