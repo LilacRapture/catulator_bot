@@ -1,1 +1,1 @@
-web: python catulator.py
+worker: python catulator.py
