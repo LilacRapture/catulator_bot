@@ -1,1 +1,1 @@
-worker: python catulator.py
+web: gunicorn catulator:app
