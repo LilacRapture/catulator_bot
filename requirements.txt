@@ -10,4 +10,4 @@ MarkupSafe==1.1.1
 requests==2.24.0
 urllib3==1.25.10
 Werkzeug==1.0.1
--e git+git://github.com/LilacRapture/re_calc@v0.2#egg=re_calc
+-e git+git://github.com/LilacRapture/re_calc@v0.3#egg=re_calc
