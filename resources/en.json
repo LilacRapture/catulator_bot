@@ -1,3 +1,13 @@
 {
-  "l:hello_world": "Hello world"
+  "t:unknown_token": "",
+  "t:missing_fn_args": "",
+  "t:invalid_arity": "",
+  "t:missing_separtor": "",
+  "t:missing_l_paren": "",
+  "t:missing_r_paren": "",
+  "t:invalid_expr": "",
+  "t:division_by_0": "",
+  "t:log_fn_domain_error": "",
+  "t:error": "",
+  "t:result": ""
 }
