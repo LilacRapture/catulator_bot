@@ -1,13 +1,13 @@
 {
-  "t:unknown_token": "",
-  "t:missing_fn_args": "",
-  "t:invalid_arity": "",
-  "t:missing_separtor": "",
-  "t:missing_l_paren": "",
-  "t:missing_r_paren": "",
-  "t:invalid_expr": "",
-  "t:division_by_0": "",
-  "t:log_fn_domain_error": "",
-  "t:error": "",
-  "t:result": ""
+  "t:unknown_token": "Unknown token",
+  "t:missing_fn_args": "Missing function arguments",
+  "t:invalid_arity": "Invalid arity",
+  "t:missing_separtor": "Missing parentheses or separator",
+  "t:missing_l_paren": "Missing open paren(s)",
+  "t:missing_r_paren": "Missing close paren(s)",
+  "t:invalid_expr": "Invalid expression",
+  "t:division_by_0": "Division by zero",
+  "t:log_fn_domain_error": "Out of log function domain",
+  "t:error": "Error",
+  "t:result": "Result"
 }
