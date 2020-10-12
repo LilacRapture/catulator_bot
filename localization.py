@@ -18,5 +18,4 @@ def load_files():
             data = file.read()
             locale_dict = json.loads(data)
             locales[locales_dict_key] = locale_dict
-    print(locales)
     return locales
