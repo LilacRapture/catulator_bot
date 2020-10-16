@@ -1,1 +1,1 @@
-web: gunicorn catulator:app
+web: gunicorn startup:app
