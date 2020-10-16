@@ -1,7 +1,7 @@
 import json
 import os
 
-res_dir_name = "resources/"
+res_dir_name = "./resources/"
 json_suffix = ".json"
 
 def load_files():
