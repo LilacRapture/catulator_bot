@@ -5,6 +5,8 @@ res_dir_name = "resources/"
 json_suffix = ".json"
 
 def load_files():
+    files_list_1 = os.listdir(".")
+    print(files_list_1)
     files_list = os.listdir(res_dir_name)
     json_files = [
         file_name
