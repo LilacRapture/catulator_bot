@@ -9,5 +9,7 @@
   "t_division_by_0": "Division by zero",
   "t_log_fn_domain_error": "Out of log function domain",
   "t_error": "Error",
-  "t_result": "Result"
+  "t_result": "Result",
+  "t_start": "Hi! This is a calcaulator bot. It can calculate a result of math expressions. E.g. <code>1 + 2 - (1 / 6.5) * -5 + 2^3 - log(9,3)</code>. Use /help for help.",
+  "t_help": "List of the supported functions and operators"
 }
