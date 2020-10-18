@@ -6,7 +6,6 @@ import re_calc.expression_parser as expression_parser
 import re_calc.shunting_yard as shunting_yard
 import re_calc.stack_machine as stack_machine
 
-
 from . import localization
 from . import app
 
@@ -40,8 +39,9 @@ def inline_msg_loc_str(template, loc_str):
 result_message_template = '{t_result}: <code>{solution}</code>'
 located_error_template = '{t_error}: {t_msg}\n<pre>{location}</pre>'
 error_template = '{t_error}: {t_msg}'
-start_template ='{t_start}'
-help_template ='{t_help}:\n'
+start_template = '{t_start}'
+help_template = '{t_help}:\n'
+
 
 def result_to_message_text(result, locale_dict):
     message_text = None
@@ -72,7 +72,7 @@ def get_locale_dict(lang_code):
 
 def process_help(locale_dict):
     operators = config.tokens_by_type(config.token_properties, "operator")
-    functions = config.tokens_by_type(token_properties, "function")
+    functions = config.tokens_by_type(config.token_properties, "function")
     available_tokens = operators + functions
     token_strings = ['<code>' + token + '</code>' for token in available_tokens]
     formatted_token_string = ', '.join(token_strings)
