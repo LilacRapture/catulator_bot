@@ -75,7 +75,7 @@ def process_help(locale_dict):
     functions = config.tokens_by_type(config.token_properties, "function")
     available_tokens = operators + functions
     token_strings = ['<code>' + token + '</code>' for token in available_tokens]
-    formatted_token_string = ', '.join(token_strings)
+    formatted_token_string = '\n'.join(token_strings)
     return help_template.format(**locale_dict) + formatted_token_string
 
 
