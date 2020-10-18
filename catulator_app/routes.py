@@ -74,6 +74,36 @@ def receive_update():
         send_message(chat_id, message_text)
     return {"ok": True}
 
+@app.route("/bot/help", methods=["GET", "POST"])
+def show_help():
+    if request.method == "POST" and 'message' in request.json:
+        message = request.json["message"]
+        lang_code = message['from']['language_code']
+        locale_dict = None
+        if lang_code == 'ru':
+            locale_dict = locales[lang_code]
+        else:
+            locale_dict = locales['en']
+        chat_id = message["chat"]["id"]
+        message_text = "HelpText"
+        send_message(chat_id, message_text)
+    return {"ok": True}
+
+@app.route("/help", methods=["GET", "POST"])
+def show_help():
+    if request.method == "POST" and 'message' in request.json:
+        message = request.json["message"]
+        lang_code = message['from']['language_code']
+        locale_dict = None
+        if lang_code == 'ru':
+            locale_dict = locales[lang_code]
+        else:
+            locale_dict = locales['en']
+        chat_id = message["chat"]["id"]
+        message_text = "HelpText2"
+        send_message(chat_id, message_text)
+    return {"ok": True}
+
 
 @app.route("/", methods=["GET", "POST"])
 def test_calculation():
