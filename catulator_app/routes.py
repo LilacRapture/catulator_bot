@@ -56,52 +56,37 @@ def result_to_message_text(result, locale_dict):
             message_text = template.format(**locale_dict)
     return message_text
 
+def get_locale_dict(lang_code):
+    if lang_code == 'ru':
+        return locales[lang_code]
+    else:
+        return locales['en']
+
+def process_help(locale_dict):
+    return "Help!"
+
+def process_start(locale_dict):
+    return "Start!"
+
+def process_im(locale_dict, message_text):
+    if message_text == "/start":
+        return process_start(locale_dict)
+    elif message_text == "/help":
+        return process_help(locale_dict)
+    else:
+        expression = message_text
+        result = exceptions.catch_calc_errors(lambda: calculate_expr(expression))
+        return result_to_message_text(result, locale_dict)
 
 @app.route("/bot/", methods=["GET", "POST"])
-def receive_update():
+def receive_im():
     if request.method == "POST" and 'message' in request.json:
-        message = request.json["message"]
         lang_code = message['from']['language_code']
-        locale_dict = None
-        if lang_code == 'ru':
-            locale_dict = locales[lang_code]
-        else:
-            locale_dict = locales['en']
-        chat_id = message["chat"]["id"]
-        expression = message['text']
-        result = exceptions.catch_calc_errors(lambda: calculate_expr(expression))
-        message_text = result_to_message_text(result, locale_dict)
-        send_message(chat_id, message_text)
-    return {"ok": True}
-
-@app.route("/bot/help", methods=["GET", "POST"])
-def show_help():
-    if request.method == "POST" and 'message' in request.json:
+        locale_dict = get_locale_dict(lang_code)
         message = request.json["message"]
-        lang_code = message['from']['language_code']
-        locale_dict = None
-        if lang_code == 'ru':
-            locale_dict = locales[lang_code]
-        else:
-            locale_dict = locales['en']
-        chat_id = message["chat"]["id"]
-        message_text = "HelpText"
-        send_message(chat_id, message_text)
-    return {"ok": True}
-
-@app.route("/help", methods=["GET", "POST"])
-def show_help_2():
-    if request.method == "POST" and 'message' in request.json:
-        message = request.json["message"]
-        lang_code = message['from']['language_code']
-        locale_dict = None
-        if lang_code == 'ru':
-            locale_dict = locales[lang_code]
-        else:
-            locale_dict = locales['en']
-        chat_id = message["chat"]["id"]
-        message_text = "HelpText2"
-        send_message(chat_id, message_text)
+        message_text = message['text']
+        response_text = process_im(locale_dict, message_text)
+        send_message(chat_id, response_text)
     return {"ok": True}
 
 
