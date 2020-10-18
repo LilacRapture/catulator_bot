@@ -4,6 +4,7 @@ import os
 res_dir_name = "catulator_app/resources/"
 json_suffix = ".json"
 
+
 def load_files():
     files_list = os.listdir(res_dir_name)
     json_files = [

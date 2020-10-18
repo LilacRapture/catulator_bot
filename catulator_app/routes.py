@@ -15,6 +15,7 @@ api_url = "https://api.telegram.org/bot{}/".format(bot_token)
 
 locales = localization.load_files()
 
+
 def send_message(chat_id, text):
     method = "sendMessage"
     data = {"chat_id": chat_id,
@@ -28,27 +29,29 @@ def calculate_expr(expression):
     rpn_list = shunting_yard.infix_to_rpn(tokens)
     return stack_machine.calculate(rpn_list)
 
+
 def inline_msg_loc_str(template, loc_str):
     replacement = "{" + loc_str + "}"
     return template.replace("{t_msg}", replacement)
+
 
 result_message_template = '{t_result}: <code>{solution}</code>'
 located_error_template = '{t_error}: {t_msg}\n<pre>{location}</pre>'
 error_template = '{t_error}: {t_msg}'
 
+
 def result_to_message_text(result, locale_dict):
+    message_text = None
     if result['status'] == 'success':
         solution = result['result']
-        params = {'solution' : solution}
+        params = {'solution': solution}
         msg_params = {**locale_dict, **params}
         message_text = result_message_template.format(**msg_params)
     elif result['status'] == 'error':
         loc_string = result['loc_string']
-        error_message = result['message']
         if 'error_location' in result:
             template = inline_msg_loc_str(located_error_template, loc_string)
             params = {'location': result['error_location']}
-            print("template", template)
             msg_params = {**locale_dict, **params}
             message_text = template.format(**msg_params)
         else:
@@ -56,17 +59,21 @@ def result_to_message_text(result, locale_dict):
             message_text = template.format(**locale_dict)
     return message_text
 
+
 def get_locale_dict(lang_code):
     if lang_code == 'ru':
         return locales[lang_code]
     else:
         return locales['en']
 
+
 def process_help(locale_dict):
     return "Help!"
 
+
 def process_start(locale_dict):
     return "Start!"
+
 
 def process_im(locale_dict, message_text):
     if message_text == "/start":
@@ -78,12 +85,14 @@ def process_im(locale_dict, message_text):
         result = exceptions.catch_calc_errors(lambda: calculate_expr(expression))
         return result_to_message_text(result, locale_dict)
 
+
 @app.route("/bot/", methods=["GET", "POST"])
 def receive_im():
     if request.method == "POST" and 'message' in request.json:
         message = request.json["message"]
         lang_code = message['from']['language_code']
         locale_dict = get_locale_dict(lang_code)
+        chat_id = message["chat"]["id"]
         message_text = message['text']
         response_text = process_im(locale_dict, message_text)
         send_message(chat_id, response_text)
