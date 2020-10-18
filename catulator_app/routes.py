@@ -90,7 +90,7 @@ def show_help():
     return {"ok": True}
 
 @app.route("/help", methods=["GET", "POST"])
-def show_help():
+def show_help_2():
     if request.method == "POST" and 'message' in request.json:
         message = request.json["message"]
         lang_code = message['from']['language_code']
