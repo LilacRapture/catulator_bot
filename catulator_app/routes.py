@@ -81,9 +81,9 @@ def process_im(locale_dict, message_text):
 @app.route("/bot/", methods=["GET", "POST"])
 def receive_im():
     if request.method == "POST" and 'message' in request.json:
+        message = request.json["message"]
         lang_code = message['from']['language_code']
         locale_dict = get_locale_dict(lang_code)
-        message = request.json["message"]
         message_text = message['text']
         response_text = process_im(locale_dict, message_text)
         send_message(chat_id, response_text)
