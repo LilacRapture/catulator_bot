@@ -82,7 +82,8 @@ def process_help(locale_dict):
     token_strings = [get_token_help_str(token)
                         for token in available_tokens]
     formatted_token_string = '\n'.join(token_strings)
-    return help_template.format(**locale_dict) + formatted_token_string
+    full_help_template = help_template + formatted_token_string
+    return full_help_template.format(**locale_dict)
 
 
 def process_start(locale_dict):
