@@ -69,12 +69,18 @@ def get_locale_dict(lang_code):
     else:
         return locales['en']
 
+def get_token_help_str(token):
+    token_string = '<code>' + token + '</code>'
+    token_props = config.token_properties[token]
+    loc_str = token_props['loc_string']
+    return token_string + ' - {' + loc_str + '}'
 
 def process_help(locale_dict):
     operators = config.tokens_by_type(config.token_properties, "operator")
     functions = config.tokens_by_type(config.token_properties, "function")
     available_tokens = operators + functions
-    token_strings = ['<code>' + token + '</code>' for token in available_tokens]
+    token_strings = [get_token_help_str(token)
+                        for token in available_tokens]
     formatted_token_string = '\n'.join(token_strings)
     return help_template.format(**locale_dict) + formatted_token_string
 
