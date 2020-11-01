@@ -1,3 +1,5 @@
+#-*- coding: utf-8 -*-
+
 from flask import request, jsonify
 import requests
 import re_calc.config as config
@@ -73,7 +75,7 @@ def get_token_help_str(token):
     token_string = '<code>' + token + '</code>'
     token_props = config.token_properties[token]
     loc_str = token_props['loc_string']
-    return token_string + ' -- {' + loc_str + '}'
+    return token_string + ' – {' + loc_str + '}'
 
 def process_help(locale_dict):
     operators = config.tokens_by_type(config.token_properties, "operator")
